@@ -17,7 +17,7 @@ return {
         answer_header = " Copilot ",
       }
 
-      vim.keymap.set("n", '<leader>cc', vim.cmd.CopilotChat)
+      vim.keymap.set("n", '<leader>cc', vim.cmd.CopilotChat, { desc = "Copilot Chat" })
       vim.keymap.set("v", '<leader>cc', vim.cmd.CopilotChat)
 
       local copilot_on = true
@@ -41,7 +41,9 @@ return {
         end,
       })
 
-      vim.keymap.set("n", "<leader>ct", ":CopilotToggle<CR>", { noremap = true, silent = true })
+      vim.keymap.set("n", "<leader>ct", ":CopilotToggle<CR>",
+        { noremap = true, silent = true, desc = "Toggle Copilot" }
+      )
     end
   },
 }

@@ -24,8 +24,8 @@ vim.api.nvim_set_keymap('v', '<', '<gv', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('v', '>', '>gv', {noremap = true, silent = true})
 
 -- swap between windows
-vim.api.nvim_set_keymap("n", "<leader><TAB>", "<C-w>w", {})
-vim.api.nvim_set_keymap("n", "<leader><S-TAB>", "<C-w>W", {})
+vim.api.nvim_set_keymap("n", "<leader><TAB>", "<C-w>w", { desc = "Next buffer" })
+vim.api.nvim_set_keymap("n", "<leader><S-TAB>", "<C-w>W", { desc = "Previous buffer" })
 
 -- shift highlighted text up and down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -37,7 +37,16 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
-vim.api.nvim_set_keymap('n', '<leader>l', ':lua ToggleRelativeNumber()<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap(
+  'n',
+  '<leader>l',
+  ':lua ToggleRelativeNumber()<CR>',
+  {
+    desc = 'Toggle relative number',
+    noremap = true,
+    silent = true
+  }
+)
 
 function ToggleRelativeNumber()
     if vim.wo.relativenumber == true then
