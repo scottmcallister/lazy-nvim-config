@@ -3,11 +3,28 @@ return {
     "nvim-telescope/telescope.nvim",
     tag = '0.1.5',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function()
-      local builtin = require("telescope.builtin")
-      vim.keymap.set('n', '<leader>f', builtin.find_files, { desc = "Find file" })
-      vim.keymap.set('n', '<leader>g', builtin.live_grep, { desc = "Find word" })
-    end
+    keys = {
+      {
+        "<leader>f",
+        function()
+          local builtin = require("telescope.builtin")
+          builtin.find_files({
+            find_command = { "rg", "--files", "--hidden", "--no-ignore", "--follow" },
+          })
+        end,
+        desc = "Find file"
+      },
+      {
+        "<leader>g",
+        function()
+          local builtin = require("telescope.builtin")
+          builtin.live_grep({
+            find_command = { "rg", "--hidden", "--no-ignore", "--follow" },
+          })
+        end,
+        desc = "Find word"
+      },
+    },
   },
   {
     'nvim-telescope/telescope-ui-select.nvim',

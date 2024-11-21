@@ -37,6 +37,9 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
+-- shortcut to quit
+vim.keymap.set("n", "<leader>q", ":qa!<CR>")
+
 vim.api.nvim_set_keymap(
   'n',
   '<leader>l',
