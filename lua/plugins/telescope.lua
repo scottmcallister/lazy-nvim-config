@@ -8,9 +8,7 @@ return {
         "<leader>f",
         function()
           local builtin = require("telescope.builtin")
-          builtin.find_files({
-            find_command = { "rg", "--files", "--hidden", "--no-ignore", "--follow" },
-          })
+          builtin.find_files()
         end,
         desc = "Find file"
       },
