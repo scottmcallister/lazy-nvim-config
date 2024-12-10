@@ -1,34 +1,38 @@
 return {
   {
     "williamboman/mason.nvim",
+    lazy = false,
+    config = function()
+      require("mason").setup()
+    end,
   },
   {
     "williamboman/mason-lspconfig.nvim",
-  },
-  {
-    "nvim-java/nvim-java",
+    lazy = false,
+    opts = {
+      auto_install = true,
+    },
   },
   {
     "neovim/nvim-lspconfig",
+    lazy = false,
     config = function()
-      require("mason").setup()
-      require("mason-lspconfig").setup({
-        ensure_installed = {
-          "jdtls",
-          "lua_ls",
-          "ruby_lsp",
-          "tailwindcss",
-          "ts_ls"
-        }
-      })
-      require("java").setup()
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
       local lspconfig = require("lspconfig")
+      lspconfig.ruby_lsp.setup({
+        capabilities = capabilities
+      })
       lspconfig.lua_ls.setup({})
       lspconfig.ts_ls.setup({})
-      lspconfig.ruby_lsp.setup({})
       lspconfig.jdtls.setup({})
-      vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Show hover' })
-      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to definition' })
-    end
-  }
+
+      vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+      vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
+      vim.keymap.set("n", "gr", vim.lsp.buf.references, {})
+      vim.keymap.set("n", "gf", vim.lsp.buf.format, {})
+      vim.keymap.set("n", "ca", vim.lsp.buf.code_action, {})
+      vim.keymap.set('n', 'rn', vim.lsp.buf.rename, {})
+    end,
+  },
 }
