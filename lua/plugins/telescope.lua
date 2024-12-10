@@ -22,6 +22,14 @@ return {
         end,
         desc = "Find word"
       },
+      {
+        "<leader><leader>",
+        function()
+          local builtin = require("telescope.builtin")
+          builtin.oldfiles({})
+        end,
+        desc = "Recent files"
+      },
     },
   },
   {
