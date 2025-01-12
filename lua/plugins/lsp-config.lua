@@ -1,10 +1,15 @@
 return {
   {
     "williamboman/mason.nvim",
-    lazy = false,
-    config = function()
-      require("mason").setup()
-    end,
+    opts = {
+      ensure_installed = {
+        "ruby",
+        "lua",
+        "typescript",
+        "java",
+        "tailwindcss",
+      },
+    },
   },
   {
     "williamboman/mason-lspconfig.nvim",
@@ -26,6 +31,23 @@ return {
       lspconfig.lua_ls.setup({})
       lspconfig.ts_ls.setup({})
       lspconfig.jdtls.setup({})
+      lspconfig.tailwindcss.setup({
+        init_options = {
+          userLanguages = {
+            eruby = "erb",
+          },
+        },
+        filetypes = {
+          "html",
+          "css",
+          "scss",
+          "javascript",
+          "typescript",
+          "javascriptreact",
+          "typescriptreact",
+          "eruby",
+        },
+      })
 
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})

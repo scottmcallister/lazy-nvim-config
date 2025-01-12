@@ -35,14 +35,6 @@ return {
         copilot_on = not copilot_on
       end, { nargs = 0 })
 
-      vim.api.nvim_create_autocmd("BufEnter", {
-        pattern = "copilot-chat",
-        callback = function()
-          vim.opt_local.relativenumber = true
-          vim.opt_local.number = false
-        end,
-      })
-
       vim.keymap.set("n", "<leader>ct", ":CopilotToggle<CR>",
         { noremap = true, silent = true, desc = "Toggle Copilot" }
       )
