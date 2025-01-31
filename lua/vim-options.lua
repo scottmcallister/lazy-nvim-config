@@ -42,7 +42,7 @@ vim.keymap.set("n", "<leader>q", ":qa!<CR>", { desc = "Quit nvim" })
 
 vim.api.nvim_set_keymap(
   'n',
-  '<leader>l',
+  '<leader>tl',
   ':lua ToggleRelativeNumber()<CR>',
   {
     desc = 'Toggle relative number',
