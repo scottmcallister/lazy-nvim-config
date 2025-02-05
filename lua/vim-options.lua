@@ -65,3 +65,4 @@ vim.api.nvim_set_keymap('v', '<leader>co', ':CodeCompanionChat<CR>', { desc = "C
 
 -- Expand 'cc' into 'CodeCompanion' in the command line
 vim.cmd([[cab cc CodeCompanion]])
+vim.cmd('let g:lsp_max_listeners = 20')

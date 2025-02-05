@@ -11,9 +11,14 @@ return {
   },
   {
     "hrsh7th/nvim-cmp",
+    dependencies = {
+      "tailwind-tools",
+      "onsails/lspkind-nvim",
+    },
     config = function()
       local cmp = require("cmp")
       require("luasnip.loaders.from_vscode").lazy_load()
+      local lspkind = require("lspkind")
 
       cmp.setup({
         snippet = {
@@ -32,12 +37,17 @@ return {
           ["<C-e>"] = cmp.mapping.abort(),
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
         }),
+        formatting = {
+          format = function(entry, vim_item)
+            vim_item.menu = entry.source.name
+            return lspkind.cmp_format({})(entry, vim_item)
+          end,
+        }, -- formatting
         sources = cmp.config.sources({
-         { name = 'nvim_lsp' },
-         { name = 'buffer' },
-         { name = 'path' },
-         { name = 'luasnip' },
-          { name = 'tailwindcss' },
+          { name = 'nvim_lsp' },
+          { name = 'buffer' },
+          { name = 'path' },
+          { name = 'luasnip' },
         }),
       })
     end,

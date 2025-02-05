@@ -28,10 +28,17 @@ return {
       lspconfig.ruby_lsp.setup({
         capabilities = capabilities
       })
-      lspconfig.lua_ls.setup({})
-      lspconfig.ts_ls.setup({})
-      lspconfig.jdtls.setup({})
+      lspconfig.lua_ls.setup({
+        capabilities = capabilities,
+      })
+      lspconfig.ts_ls.setup({
+        capabilities = capabilities,
+      })
+      lspconfig.jdtls.setup({
+        capabilities = capabilities,
+      })
       lspconfig.tailwindcss.setup({
+        capabilities = capabilities,
         init_options = {
           userLanguages = {
             eruby = "erb",
@@ -47,6 +54,16 @@ return {
           "typescriptreact",
           "eruby",
         },
+      })
+
+      -- Set indentation for Ruby files
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "ruby",
+        callback = function()
+          vim.bo.shiftwidth = 2
+          vim.bo.tabstop = 2
+          vim.bo.expandtab = true
+        end,
       })
 
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
