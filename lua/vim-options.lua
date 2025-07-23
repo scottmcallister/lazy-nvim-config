@@ -58,11 +58,11 @@ function ToggleRelativeNumber()
         vim.wo.relativenumber = true
     end
 end
-
--- Code Companion keybindings
-vim.api.nvim_set_keymap('n', '<leader>co', ':CodeCompanionChat<CR>', { desc = "Code Companion" })
-vim.api.nvim_set_keymap('v', '<leader>co', ':CodeCompanionChat<CR>', { desc = "Code Companion" })
-
--- Expand 'cc' into 'CodeCompanion' in the command line
-vim.cmd([[cab cc CodeCompanion]])
-vim.cmd('let g:lsp_max_listeners = 20')
+--
+-- -- Code Companion keybindings
+-- vim.api.nvim_set_keymap('n', '<leader>co', ':CodeCompanionChat<CR>', { desc = "Code Companion" })
+-- vim.api.nvim_set_keymap('v', '<leader>co', ':CodeCompanionChat<CR>', { desc = "Code Companion" })
+--
+-- -- Expand 'cc' into 'CodeCompanion' in the command line
+-- vim.cmd([[cab cc CodeCompanion]])
+-- vim.cmd('let g:lsp_max_listeners = 20')

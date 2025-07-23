@@ -1,15 +1,10 @@
 return {
   {
     "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "ruby",
-        "lua",
-        "typescript",
-        "java",
-        "tailwindcss",
-      },
-    },
+    lazy = false,
+    config = function()
+      require("mason").setup()
+    end,
   },
   {
     "williamboman/mason-lspconfig.nvim",
@@ -37,41 +32,23 @@ return {
       lspconfig.jdtls.setup({
         capabilities = capabilities,
       })
-      lspconfig.tailwindcss.setup({
-        capabilities = capabilities,
-        init_options = {
-          userLanguages = {
-            eruby = "erb",
-          },
-        },
-        filetypes = {
-          "html",
-          "css",
-          "scss",
-          "javascript",
-          "typescript",
-          "javascriptreact",
-          "typescriptreact",
-          "eruby",
-        },
-      })
-
-      -- Set indentation for Ruby files
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = "ruby",
-        callback = function()
-          vim.bo.shiftwidth = 2
-          vim.bo.tabstop = 2
-          vim.bo.expandtab = true
-        end,
-      })
+      --
+      -- -- Set indentation for Ruby files
+      -- vim.api.nvim_create_autocmd("FileType", {
+      --   pattern = "ruby",
+      --   callback = function()
+      --     vim.bo.shiftwidth = 2
+      --     vim.bo.tabstop = 2
+      --     vim.bo.expandtab = true
+      --   end,
+      -- })
 
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-      vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
-      vim.keymap.set("n", "gr", vim.lsp.buf.references, {})
-      vim.keymap.set("n", "gf", vim.lsp.buf.format, {})
-      vim.keymap.set("n", "ca", vim.lsp.buf.code_action, {})
-      vim.keymap.set('n', 'rn', vim.lsp.buf.rename, {})
+      vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
+      vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
+      vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
+      vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+      vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
     end,
   },
 }

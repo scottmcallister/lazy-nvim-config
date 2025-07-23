@@ -12,7 +12,6 @@ return {
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
-      "tailwind-tools",
       "onsails/lspkind-nvim",
     },
     config = function()
