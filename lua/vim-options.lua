@@ -40,6 +40,9 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- shortcut to quit
 vim.keymap.set("n", "<leader>q", ":qa!<CR>", { desc = "Quit nvim" })
 
+-- copy to the system clipboard when yanking
+vim.opt.clipboard = "unnamedplus"
+
 vim.api.nvim_set_keymap(
   'n',
   '<leader>tl',
