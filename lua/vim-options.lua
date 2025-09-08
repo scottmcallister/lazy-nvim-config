@@ -41,7 +41,7 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "<leader>q", ":qa!<CR>", { desc = "Quit nvim" })
 
 -- copy to the system clipboard when yanking
-vim.opt.clipboard = "unnamedplus"
+-- vim.opt.clipboard = "unnamedplus"
 
 vim.api.nvim_set_keymap(
   'n',
