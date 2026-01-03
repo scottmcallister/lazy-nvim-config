@@ -19,17 +19,16 @@ return {
     config = function()
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-      local lspconfig = require("lspconfig")
-      lspconfig.ruby_lsp.setup({
+      vim.lsp.config('ruby_lsp', {
         capabilities = capabilities
       })
-      lspconfig.lua_ls.setup({
+      vim.lsp.config('lua_ls', {
         capabilities = capabilities,
       })
-      lspconfig.ts_ls.setup({
+      vim.lsp.config('ts_ls', {
         capabilities = capabilities,
       })
-      lspconfig.jdtls.setup({
+      vim.lsp.config('jdtls', {
         capabilities = capabilities,
       })
       --
