@@ -10,7 +10,8 @@ return {
     "williamboman/mason-lspconfig.nvim",
     lazy = false,
     opts = {
-      auto_install = true,
+      ensure_installed = { "ruby_lsp", "lua_ls", "ts_ls", "jdtls" },
+      automatic_enable = false,
     },
   },
   {
@@ -32,6 +33,7 @@ return {
         capabilities = capabilities,
       })
       --
+      vim.lsp.enable({ 'ruby_lsp', 'lua_ls', 'ts_ls', 'jdtls' })
       -- -- Set indentation for Ruby files
       -- vim.api.nvim_create_autocmd("FileType", {
       --   pattern = "ruby",

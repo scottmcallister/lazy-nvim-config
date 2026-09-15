@@ -69,3 +69,15 @@ end
 -- -- Expand 'cc' into 'CodeCompanion' in the command line
 -- vim.cmd([[cab cc CodeCompanion]])
 -- vim.cmd('let g:lsp_max_listeners = 20')
+
+-- Start Neovim's built-in Tree-sitter highlighter when a parser is available.
+local native_treesitter_group = vim.api.nvim_create_augroup("native_treesitter", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+  group = native_treesitter_group,
+  callback = function(args)
+    local has_parser = pcall(vim.treesitter.get_parser, args.buf)
+    if has_parser then
+      pcall(vim.treesitter.start, args.buf)
+    end
+  end,
+})
