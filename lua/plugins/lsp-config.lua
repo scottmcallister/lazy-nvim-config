@@ -10,7 +10,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     lazy = false,
     opts = {
-      ensure_installed = { "ruby_lsp", "lua_ls", "ts_ls", "jdtls" },
+      ensure_installed = { "ruby_lsp", "lua_ls", "ts_ls", "jdtls", "emmet_ls" },
       automatic_enable = false,
     },
   },
@@ -21,7 +21,7 @@ return {
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
       vim.lsp.config('ruby_lsp', {
-        capabilities = capabilities
+        capabilities = capabilities,
       })
       vim.lsp.config('lua_ls', {
         capabilities = capabilities,
@@ -32,18 +32,30 @@ return {
       vim.lsp.config('jdtls', {
         capabilities = capabilities,
       })
-      --
-      vim.lsp.enable({ 'ruby_lsp', 'lua_ls', 'ts_ls', 'jdtls' })
-      -- -- Set indentation for Ruby files
-      -- vim.api.nvim_create_autocmd("FileType", {
-      --   pattern = "ruby",
-      --   callback = function()
-      --     vim.bo.shiftwidth = 2
-      --     vim.bo.tabstop = 2
-      --     vim.bo.expandtab = true
-      --   end,
-      -- })
+      vim.lsp.config('emmet_ls', {
+        capabilities = capabilities,
+        filetypes = {
+          'html',
+          'css',
+          'scss',
+          'less',
+          'javascriptreact',
+          'typescriptreact',
+          'vue',
+          'svelte',
+          'php',
+          'eruby',
+        }
+      })
 
+      --
+      vim.lsp.enable({
+        'ruby_lsp',
+        'lua_ls',
+        'ts_ls',
+        'jdtls',
+        'emmet_ls'
+      })
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
       vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
       vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
