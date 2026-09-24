@@ -73,7 +73,26 @@ return {
 
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
-          { name = "luasnip" },
+          {
+            name = "luasnip",
+            entry_filter = function(entry, ctx)
+              -- Extracts the alphanumeric word immediately behind cursor
+              local word = ctx.cursor_before_line:match("%a+$")
+
+              local forbidden_keywords = {
+                ["else"] = true,
+                ["elsif"] = true,
+                ["end"] = true,
+                ["if"] = true,
+                ["unless"] = true
+              }
+              if forbidden_keywords[word] then
+                return false
+              end
+
+              return true
+            end
+          },
           { name = "buffer" },
           { name = "path" },
         }),
